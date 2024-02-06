@@ -3,7 +3,7 @@ name: Download Kaggle Dataset
 on:
   push:
     branches:
-      - feature-retrieve-dataset
+      - feature-retrive-dataset
 permissions:
   contents: write
 jobs:
@@ -16,7 +16,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         token: ${{ secrets.GH_PAT }}
-        ref: feature-retrieve-dataset
+        ref: feature-retrive-dataset
 
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -27,7 +27,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-
     - name: Download dataset
       env:
         KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
@@ -40,6 +39,7 @@ jobs:
         mkdir dataset
         kaggle datasets download -d mmmarchetti/transfusion-dataset -p dataset
         unzip dataset/transfusion-dataset.zip -d dataset
+
     - name: Commit and push changes
       run: |
         git config --local user.email "action@github.com"
