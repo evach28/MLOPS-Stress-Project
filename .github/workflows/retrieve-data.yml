@@ -35,6 +35,7 @@ jobs:
       run: |
         mkdir dataset
         kaggle datasets download -d jeyasrisenthil/stress-level-detection -p dataset
+        unzip dataset/stress-level-detection.zip -d dataset
 
     - name: Commit and push changes
       run: |
